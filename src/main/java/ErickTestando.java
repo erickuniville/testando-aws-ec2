@@ -10,7 +10,7 @@ public class ErickTestando {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("============= TESTANDO INSTANCE-ID =============");
-        System.out.println("id / ip / inf");
+        System.out.println("id / ip / inf / net");
         while(true) {
             try {
                 String option = input.nextLine().toLowerCase();
