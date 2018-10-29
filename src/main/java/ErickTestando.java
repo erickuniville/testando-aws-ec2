@@ -11,7 +11,7 @@ public class ErickTestando {
         Scanner input = new Scanner(System.in);
         System.out.println("============= TESTANDO INSTANCE-ID =============");
         System.out.println("id / ip / inf / net");
-        while(true) {
+        while (true) {
             try {
                 String option = input.nextLine().toLowerCase();
                 if (option.equals("id")) {
@@ -30,18 +30,27 @@ public class ErickTestando {
                     System.out.println("ramdiskId: " + instanceInfo.getRamdiskId());
                     System.out.println("region: " + instanceInfo.getRegion());
                     System.out.println("version: " + instanceInfo.getVersion());
-                    System.out.println("version: " + instanceInfo.getVersion());
-                    for (String billingProduct : instanceInfo.getBillingProducts()) {
-                        System.out.println("    billingProduct: " + billingProduct);
+                    System.out.println("billingProducts:");
+                    String[] billingProducts = instanceInfo.getBillingProducts();
+                    if (billingProducts == null) {
+                        billingProducts = new String[]{};
                     }
-                    for (String devProductCode : instanceInfo.getDevpayProductCodes()) {
-                        System.out.println("    devProductCode: " + devProductCode);
+                    for (String billingProduct : billingProducts) {
+                        System.out.println("    - " + billingProduct);
+                    }
+                    System.out.println("devpayProductCodes:");
+                    String[] devpayProductCodes = instanceInfo.getDevpayProductCodes();
+                    if (devpayProductCodes == null) {
+                        devpayProductCodes = new String[]{};
+                    }
+                    for (String devProductCode : devpayProductCodes) {
+                        System.out.println("    - " + devProductCode);
                     }
                 } else if (option.equals("net")) {
                     List<NetworkInterface> networkInterces = EC2MetadataUtils.getNetworkInterfaces();
                     for (NetworkInterface net : networkInterces) {
                         System.out.println("hostname: " + net.getHostname());
-                        System.out.println("macAdress: " + net.getMacAddress());
+                        System.out.println("macAddress: " + net.getMacAddress());
                         System.out.println("ownerId: " + net.getOwnerId());
                         System.out.println("profile: " + net.getProfile());
                         System.out.println("publicHostname: " + net.getPublicHostname());
@@ -59,8 +68,7 @@ public class ErickTestando {
                 } else {
                     System.out.println("Esse comando não existe!");
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
