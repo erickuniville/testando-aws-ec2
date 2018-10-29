@@ -8,10 +8,8 @@ public class ErickTestando {
         System.out.println("============= TESTANDO INSTANCE-ID =============");
         while (true) {
             try {
-                String option = input.nextLine();
-                if (option.equals("id")) {
-                    System.out.println(EC2MetadataUtils.getInstanceId());
-                }
+                input.nextLine();
+                System.out.println(EC2MetadataUtils.getInstanceId());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
